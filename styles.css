@@ -1,17 +1,87 @@
-.container {
+body {
+    background-color: #095a3c; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#title {
+    color: rgb(240, 213, 155);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-button {
-    background-color: rgb(23, 173, 223);
-    width: 100px;
-    height: 50px;
-    font-size: 18px;
-    margin-right: 100px;
+#navbar {
+    background-color: #033e29;
+    margin: 50px 200px 50px 200px;
+    padding: 20px 40px 20px 40px;
+    border-radius: 20px;
 }
 
-p {
-    font-size: 24px;
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: #F5F0E6;
+    text-decoration: none;
+    font-size: 15px;
+
+    transition: color 0.3s ease;
+    padding: 15px;
+}
+
+.nav-links a:hover {
+    color: #D9B86C;
+}
+
+#tiempo {
+    color: #F5F0E6;
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 370px;
+    margin-right: 80px;
+}
+
+.btn-reiniciar {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #F5F0E6;
+    border-radius: 5px;
+    border: none;
+
+    padding: 10px;
+    margin-right: 80px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reiniciar:hover {
+    background-color: #D9B86C;
+}
+
+.btn-jugar {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #F5F0E6;
+    border-radius: 5px;
+    border: none;
+
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-jugar:hover {
+    background-color: #D9B86C;
+}
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.carta {
+    background-color: white;
+    height: 150px;
+    border-radius: 10px;
 }
