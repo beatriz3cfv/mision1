@@ -6,7 +6,6 @@
     --color-carta-dorso: #0e7a52;
     --color-carta-frente: #F5F0E6;
     --color-carta-encontrada: #D9B86C;
-    --transicion: 0.3s ease;
 }
 
 body.modo-oscuro {
@@ -20,83 +19,83 @@ body.modo-oscuro {
 }
 
 * {
-    /* padding y border dentro del ancho totalmmmmmmm */
+    /* padding y border dentro del ancho total */
     box-sizing: border-box;
 }
 
 body {
-    background-color: #095a3c; 
+    background-color: var(--color-fondo); 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
-    
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
 }
 
 #title {
-    color: rgb(240, 213, 155);
+    color: var(--color-acento);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 30px;
+    transition: color 0.3s ease;
 }
 
 #navbar {
-    background-color: #033e29;
+    background-color: var(--color-panel);
     margin: 50px 200px 50px 200px;
-    padding: 20px 40px 20px 40px;
+    padding: 20px 40px;
     border-radius: 20px;
+    transition: background-color 0.3s ease;
 }
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 35px;
 }
 
 .nav-links a {
-    color: #F5F0E6;
+    color: var(--color-texto);
     text-decoration: none;
     font-size: 15px;
-
-    transition: color 0.3s ease;
     padding: 15px;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #D9B86C;
+    color: var(--color-acento);
 }
 
 #tiempo {
-    color: #F5F0E6;
-    text-decoration: none;
+    color: var(--color-texto);
     font-size: 15px;
-    margin-left: 370px;
-    margin-right: 80px;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
-.btn-reiniciar {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #F5F0E6;
+.btn-reiniciar, .btn-jugar, .btn-jugar-otra {
+    background-color: var(--color-carta-frente);
     border-radius: 5px;
     border: none;
-
-    padding: 10px;
-    margin-right: 80px;
+    padding: 10px 16px;
     transition: background-color 0.3s ease;
 }
 
-.btn-reiniciar:hover {
-    background-color: #D9B86C;
+.btn-reiniciar:hover, .btn-jugar:hover, .btn-jugar-otra:hover {
+    background-color: var(--color-acento);
 }
 
-.btn-jugar {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #F5F0E6;
-    border-radius: 5px;
-    border: none;
-
-    padding: 10px;
-    transition: background-color 0.3s ease;
+#info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    color: var(--color-texto);
+    font-size: 15px;
+    margin-bottom: 20px;
 }
 
-.btn-jugar:hover {
-    background-color: #D9B86C;
+.oculto {
+    display: none !important;
 }
 
 #tablero {
@@ -105,10 +104,76 @@ body {
     gap: 20px;
     max-width: 900px;
     margin: 40px auto;
+    padding: 0 20px;
 }
 
 .carta {
-    background-color: white;
-    height: 150px;
+    height: 130px;
+    perspective: 800px;
+}
+
+.carta-interior {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.carta.vuelta .carta-interior, .carta.encontrada .carta-interior {
+    transform: rotateY(180deg);
+}
+
+.carta-cara {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
+    backface-visibility: hidden;
+    font-size: 35px;
+}
+
+.carta-dorso {
+    background-color: var(--color-carta-dorso);
+    color: var(--color-acento);
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.carta-frente {
+    background-color: var(--color-carta-frente);
+    transform: rotateY(180deg);
+}
+
+.carta.encontrada .carta-frente {
+    background-color: var(--color-carta-encontrada);
+}
+
+#info-victoria {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tarjeta-victoria {
+    background-color: var(--color-panel);
+    color: var(--color-texto);
+    padding: 30px 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 340px;
+}
+
+#pista-oscuro {
+    text-align: center;
+    color: var(--color-texto);
+    opacity: 0.6;
+    font-size: 12px;
+    margin: 10px 0 40px 0;
 }
