@@ -10,32 +10,28 @@
     <h1 id="title">Juego de Memoria</h1>
     <nav id="navbar">
         <div class="nav-links">
-            <button class="btn-reiniciar">Reiniciar</button>
-            <a href="#">Estadísticas</a>
-            <p id="tiempo">Tiempo: 00:11:45</p>
-            <button class="btn-jugar">Jugar</button>
+            <button class="btn-reiniciar" type="button">Reiniciar</button>
+            <p id="tiempo">Tiempo: 00:00:00</p>
+            <button class="btn-jugar" type="button">Jugar</button>
         </div>
     </nav>
-    <div id="tablero">
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
-        <div class="carta"></div>
+
+    <div id="info">
+        <span id="intentos">Intentos: 0</span>
+        <span id="parejas"> Parejas: 0 / 9</span>
     </div>
+
+    <div id="tablero"></div>
+
+    <div id="info-victoria" class="oculto">
+        <div id="tarjeta-victoria">
+            <h2>Completado!</h2>
+            <p id="resumen-victoria"></p>
+            <button class="btn-jugar-otra" type="button">Jugar otra vez</button>
+        </div>
+    </div>
+
+    <p id="pista-oscuro">Tecla secreta para el modo oscuro</p>
 
     <script src="app.js"></script>
 </body>
