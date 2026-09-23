@@ -3,19 +3,18 @@ const IMAGENES = ["star", "heart", "sun", "moon", "cloud", "tree", "flower", "wa
 // nodos dom. elementos html para modificar durante el juego
 const tablero = document.getElementById("tablero");
 const tiempo = document.getElementById("tiempo");
-const intentos = document.getElementById("intentos");
-const parejas = document.getElementById("parejas");
-
+const elIntentos = document.getElementById("intentos");
+const elParejas = document.getElementById("parejas");
 const btnJugar = document.querySelector(".btn-jugar");
 const btnReiniciar = document.querySelector(".btn-reiniciar");
-const btnJugarOtra = document.querySelector(".btn-jugar-otra");
-
 const infoVictoria = document.getElementById("info-victoria");
 const resumenVictoria = document.getElementById("resumen-victoria");
+const btnJugarOtra = document.querySelector(".btn-jugar-otra");
 
 // estado del juego
 let cartaVolteada = null;
 let bloqueado = false;
+let intentos = 0;
 let parejasEncontradas = 0;
 let segundos = 0;
 let idIntervalo = null;
@@ -56,7 +55,7 @@ function crearCarta(nombre) {
     const imagen = document.createElement("img");
     imagen.src = `images/${nombre}.svg`;
     imagen.alt = nombre;
-    
+
     frente.appendChild(imagen);
     interior.append(dorso, frente);
     carta.appendChild(interior);
@@ -83,7 +82,7 @@ function comprobarPareja(primera, segunda) {
     intentos++;
     actualizarContadores();
 
-    const esPareja = primera.dataset.nombre == segunda.dataset.nombre;
+    const esPareja = primera.dataset.nombre === segunda.dataset.nombre;
 
     if (esPareja) {
         primera.classList.add("encontrada");
@@ -108,11 +107,11 @@ function comprobarPareja(primera, segunda) {
 }
 
 function actualizarContadores() {
-    intentos.textContent = `Intentos: ${intentos}`;
-    parejas.textContent = `Parejas: ${parejasEncontradas} / ${IMAGENES.length}`;
+    elIntentos.textContent = `Intentos: ${intentos}`;
+    elParejas.textContent = `Parejas: ${parejasEncontradas} / ${IMAGENES.length}`;
 }
 
-function formatearTemporizador(total) {
+function formatearTiempo(total) {
     const minutos = Math.floor(total / 60).toString().padStart(2, "0");
     const segs = (total % 60).toString().padStart(2, "0");
 
@@ -132,7 +131,7 @@ function iniciarTemporizador() {
 
 function ganarPartida() {
     clearInterval(idIntervalo);
-    resumenVictoria.textContent = `¡Completado en ${formatearTiempo(segundos)} con ${intentos} intentos!`;
+    resumenVictoria.textContent = `Lo lograste en ${formatearTiempo(segundos)} con ${intentos} intentos.`;
     infoVictoria.classList.remove("oculto");
 }
 
