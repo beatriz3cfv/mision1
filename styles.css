@@ -120,7 +120,7 @@ body {
     transform-style: preserve-3d;
 }
 
-.carta.vuelta .carta-interior, .carta.encontrada .carta-interior {
+.carta.volteada .carta-interior, .carta.encontrada .carta-interior {
     transform: rotateY(180deg);
 }
 
@@ -150,6 +150,12 @@ body {
 
 .carta.encontrada .carta-frente {
     background-color: var(--color-carta-encontrada);
+}
+
+.carta-frente img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
 }
 
 #info-victoria {
