@@ -19,6 +19,14 @@ let parejasEncontradas = 0;
 let segundos = 0;
 let idIntervalo = null;
 
+// EventListener en el tablero en vez de cada carta
+tablero.addEventListener("click", (event) => {
+    const carta = event.target.closest(".carta");
+
+    if (!carta) return;
+    voltearCarta(carta);
+});
+
 function barajar(array) {
     const copia = [...array]; // copia independiente
     for (let i = copia.length - 1; i > 0; i--) {
@@ -60,7 +68,6 @@ function crearCarta(nombre) {
     interior.append(dorso, frente);
     carta.appendChild(interior);
 
-    carta.addEventListener("click", () => voltearCarta(carta));
     return carta;
 }
 
@@ -121,11 +128,16 @@ function formatearTiempo(total) {
 function iniciarTemporizador() {
     clearInterval(idIntervalo);
 
+    const actualizarTiempo = () => {
+        tiempo.textContent = `Tiempo: ${formatearTiempo(segundos)}`;
+    }
+
     segundos = 0;
-    tiempo.textContent = `Tiempo: ${formatearTiempo(segundos)}`;
+    actualizarTiempo();
+
     idIntervalo = setInterval(() => {
         segundos++;
-        tiempo.textContent = `Tiempo: ${formatearTiempo(segundos)}`;
+        actualizarTiempo();
     }, 1000);
 }
 
@@ -147,7 +159,7 @@ function jugar() {
     iniciarTemporizador();
 }
 
-function modoOscuro(evento) {
+function teclaSecreta(evento) {
     if (evento.key.toLowerCase() === "m") {
         document.body.classList.toggle("modo-oscuro");
     }
@@ -156,7 +168,7 @@ function modoOscuro(evento) {
 btnJugar.addEventListener("click", jugar);
 btnReiniciar.addEventListener("click", jugar);
 btnJugarOtra.addEventListener("click", jugar);
-document.addEventListener("keydown", modoOscuro);
+document.addEventListener("keydown", teclaSecreta);
 
 actualizarContadores();
 construirTablero();
