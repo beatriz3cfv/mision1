@@ -1,5 +1,9 @@
 const IMAGENES = ["star", "heart", "sun", "moon", "cloud", "tree", "flower", "wave", "mountain"];
 
+// constantes numéricas
+const ESPERA = 800;
+const NUM_PAREJAS = 9;
+
 // nodos dom. elementos html para modificar durante el juego
 const tablero = document.getElementById("tablero");
 const tiempo = document.getElementById("tiempo");
@@ -110,12 +114,12 @@ function comprobarPareja(primera, segunda) {
         segunda.classList.remove("volteada");
         cartaVolteada = null;
         bloqueado = false;
-    }, 800);
+    }, ESPERA);
 }
 
 function actualizarContadores() {
     elIntentos.textContent = `Intentos: ${intentos}`;
-    elParejas.textContent = `Parejas: ${parejasEncontradas} / ${IMAGENES.length}`;
+    elParejas.textContent = `Parejas: ${parejasEncontradas} / ${NUM_PAREJAS}`;
 }
 
 function formatearTiempo(total) {
@@ -130,7 +134,7 @@ function iniciarTemporizador() {
 
     const actualizarTiempo = () => {
         tiempo.textContent = `Tiempo: ${formatearTiempo(segundos)}`;
-    }
+    };
 
     segundos = 0;
     actualizarTiempo();
